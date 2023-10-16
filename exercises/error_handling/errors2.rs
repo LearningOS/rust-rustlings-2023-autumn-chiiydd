@@ -27,7 +27,11 @@ pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let cost_per_item = 5;
     let qty = item_quantity.parse::<i32>();
 
-    Ok(qty * cost_per_item + processing_fee)
+    if qty.is_ok(){
+        Ok(qty.unwrap() * cost_per_item + processing_fee)
+    }else{
+        qty
+    }
 }
 
 #[cfg(test)]
